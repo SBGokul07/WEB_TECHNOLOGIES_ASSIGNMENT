@@ -1,0 +1,18 @@
+<%--
+    File    : WEB-INF/views/navbar.jspf  (included in every private page)
+    Purpose : Top bar with the logged-in user's name and a Logout button.
+--%>
+<%
+    com.kpriet.portal.model.User currentUser =
+            (com.kpriet.portal.model.User) session.getAttribute("user");
+%>
+<header class="topbar">
+    <a class="brand" href="<%= request.getContextPath() %>/students">
+        KPRIET <span>Student Profile Portal</span></a>
+    <div class="user-box">
+        <% if (currentUser != null) { %>
+            Welcome, <strong><%= HtmlUtil.escape(currentUser.getFullName()) %></strong>
+        <% } %>
+        <a href="<%= request.getContextPath() %>/logout" class="btn btn-light btn-sm">Logout</a>
+    </div>
+</header>

@@ -1,0 +1,260 @@
+/* =============================================================
+ * File    : css/portal.css
+ * Author  : S B GOKUL (24CS067)
+ * Purpose : Styles for the Servlet student profile portal (Q3)
+ * ============================================================= */
+
+:root {
+    --primary: #0f5e57;
+    --primary-dark: #0a443f;
+    --accent: #f2a900;
+    --bg: #eef3f2;
+    --text: #1f2933;
+    --muted: #6b7280;
+    --border: #d5e0de;
+    --danger: #c62828;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: "Segoe UI", Roboto, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+}
+
+a { color: var(--primary); }
+
+/* ---------- Top bar ---------- */
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    background: var(--primary);
+    color: #fff;
+    padding: 14px 28px;
+    border-bottom: 4px solid var(--accent);
+}
+
+.brand { color: #fff; text-decoration: none; font-size: 1.3rem; font-weight: 700; }
+.brand span { font-weight: 400; opacity: 0.85; }
+.user-box { display: flex; align-items: center; gap: 14px; }
+
+/* ---------- Layout ---------- */
+.container { max-width: 1150px; margin: 28px auto; padding: 0 18px; }
+
+.card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.06);
+    padding: 22px;
+    margin-bottom: 22px;
+}
+
+.page-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.page-head h2 { color: var(--primary-dark); }
+
+.count {
+    background: var(--accent);
+    font-size: 0.85rem;
+    padding: 2px 10px;
+    border-radius: 20px;
+    vertical-align: middle;
+}
+
+.section-title {
+    color: var(--primary);
+    border-bottom: 2px solid var(--bg);
+    padding-bottom: 8px;
+    margin-bottom: 14px;
+}
+
+.footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 18px; }
+.muted { color: var(--muted); }
+.small { font-size: 0.8rem; }
+.empty { color: var(--muted); }
+.back-link { display: inline-block; margin-bottom: 14px; text-decoration: none; }
+
+/* ---------- Buttons, inputs, alerts ---------- */
+.btn {
+    display: inline-block;
+    padding: 9px 18px;
+    border: none;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.5;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-primary:hover { background: var(--primary-dark); }
+.btn-light { background: #fff; color: var(--primary); }
+.btn-sm { padding: 4px 12px; font-size: 0.85rem; }
+.btn-block { display: block; width: 100%; }
+
+input[type="text"], input[type="password"], input[type="search"] {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    font-size: 0.95rem;
+}
+
+input:focus { outline: none; border-color: var(--primary); }
+
+.search { display: flex; gap: 8px; }
+.search input { width: 300px; }
+
+.alert { padding: 10px 14px; border-radius: 6px; margin-bottom: 16px; font-size: 0.92rem; }
+.alert-error { background: #fdecea; color: var(--danger); border-left: 5px solid var(--danger); }
+.alert-info { background: #e6f2f1; color: var(--primary-dark); border-left: 5px solid; }
+
+/* ---------- Login and error pages ---------- */
+.login-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--primary), #1a4f8b);
+    padding: 16px;
+}
+
+.login-card {
+    background: #fff;
+    width: 100%;
+    max-width: 380px;
+    padding: 34px 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    text-align: center;
+}
+
+.login-card h1 { color: var(--primary); font-size: 2rem; }
+.login-card .subtitle { color: var(--muted); margin-bottom: 20px; }
+.login-card form { text-align: left; }
+.login-card label { display: block; font-weight: 600; font-size: 0.9rem; margin: 12px 0 5px; }
+.login-card .btn-block { margin-top: 20px; }
+.login-card .hint { font-size: 0.82rem; color: var(--muted); margin-top: 16px; }
+
+/* ---------- Student cards (list page) ---------- */
+.student-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 20px;
+}
+
+.student-card { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.student-card h3 { margin-top: 12px; }
+.student-card .btn-block { margin-top: auto; }
+
+.roll { font-weight: 700; color: var(--primary); letter-spacing: 0.5px; }
+
+.avatar {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--primary);
+}
+
+.avatar-lg { width: 160px; height: 160px; }
+
+.placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--primary);
+    color: #fff;
+    font-size: 2.2rem;
+    font-weight: 700;
+}
+
+.chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin: 12px 0 16px; }
+
+.chip {
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 14px;
+    text-decoration: none;
+}
+
+.chip-pdf { background: #fdecea; color: var(--danger); }
+.chip-img { background: #e3f0ee; color: var(--primary); }
+
+/* ---------- Profile page ---------- */
+.profile-layout { display: grid; grid-template-columns: 300px 1fr; gap: 22px; }
+.profile-card { text-align: center; }
+.profile-card h2 { margin-top: 12px; }
+.profile-card .avatar { margin: 0 auto; }
+
+.details { width: 100%; border-collapse: collapse; }
+.details th { width: 35%; text-align: left; padding: 9px; color: var(--muted); }
+.details td { padding: 9px; border-bottom: 1px solid var(--bg); }
+
+.badge {
+    display: inline-block;
+    background: #e3f0ee;
+    color: var(--primary);
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 2px 9px;
+    border-radius: 12px;
+}
+
+.doc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+.doc-card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px;
+    text-align: center;
+}
+
+.doc-card img, .doc-icon {
+    width: 100%;
+    height: 130px;
+    object-fit: contain;
+    background: #f4f8f7;
+    border-radius: 6px;
+    margin-bottom: 8px;
+}
+
+.doc-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fdecea;
+    color: var(--danger);
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+.doc-name { font-weight: 600; margin: 6px 0 2px; overflow-wrap: anywhere; }
+.doc-links { display: flex; justify-content: center; gap: 14px; margin-top: 8px; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 800px) {
+    .profile-layout { grid-template-columns: 1fr; }
+    .search, .search input { width: 100%; }
+    .topbar { padding: 12px 16px; }
+}

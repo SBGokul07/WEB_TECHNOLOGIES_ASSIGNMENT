@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<!--
+    File    : index.html
+    Author  : S B GOKUL (24CS067)
+    Purpose : Q1 - Student registration form for the admission portal.
+              Styling is in css/style.css, validation in js/validation.js
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration | KPRIET Admission Portal</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- ===== Page header ===== -->
+    <header class="site-header">
+        <h1>KPRIET Admission Portal</h1>
+        <p>Student Registration Form &middot; Academic Year 2026&ndash;2027</p>
+    </header>
+
+    <main class="container">
+
+        <!-- Banner shown by JavaScript when the form has errors -->
+        <div id="formAlert" class="alert alert-error" role="alert" hidden></div>
+
+        <!-- novalidate turns off the browser's default pop-ups so that
+             our own JavaScript checks and styled messages are used -->
+        <form id="registrationForm" class="reg-form" action="#" method="post"
+              enctype="multipart/form-data" novalidate>
+
+            <!-- ===== Section 1: Personal details ===== -->
+            <fieldset>
+                <legend>1. Personal Details</legend>
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="fullName">Full Name <span class="req">*</span></label>
+                        <input type="text" id="fullName" name="fullName"
+                               placeholder="e.g. S B Gokul" maxlength="60">
+                        <small class="error-msg"></small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="rollNo">Roll Number <span class="req">*</span></label>
+                        <input type="text" id="rollNo" name="rollNo"
+                               placeholder="e.g. 24CS067" maxlength="10">
+                        <small class="error-msg"></small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address <span class="req">*</span></label>
+                        <input type="email" id="email" name="email"
+                               placeholder="name@example.com">
+                        <small class="error-msg"></small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Mobile Number <span class="req">*</span></label>
+                        <input type="tel" id="phone" name="phone"
+                               placeholder="10-digit mobile number" maxlength="10">
+                        <small class="error-msg"></small>
+                    </div>
+
+                    <div class="form-group full-width" id="genderGroup">
+                        <span class="label">Gender <span class="req">*</span></span>
+                        <div class="radio-row">
+                            <label><input type="radio" name="gender" value="Male"> Male</label>
+                            <label><input type="radio" name="gender" value="Female"> Female</label>
+                            <label><input type="radio" name="gender" value="Other"> Other</label>
+                        </div>
+                        <small class="error-msg"></small>
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- ===== Section 2: Course details ===== -->
+            <fieldset>
+                <legend>2. Course Details</legend>
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="course">Course <span class="req">*</span></label>
+                        <select id="course" name="course">
+                            <option value="">-- Select Course --</option>
+                            <option>B.E. Computer Science and Engineering</option>
+                            <option>B.E. Electronics and Communication Engineering</option>
+                            <option>B.E. Electrical and Electronics Engineering</option>
+                            <option>B.E. Mechanical Engineering</option>
+                            <option>B.Tech. Information Technology</option>
+                            <option>B.Tech. Artificial Intelligence and Data Science</option>
+                        </select>
+                        <small class="error-msg"></small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="year">Year of Study <span class="req">*</span></label>
+                        <select id="year" name="year">
+                            <option value="">-- Select Year --</option>
+                            <option value="1">I Year</option>
+                            <option value="2">II Year</option>
+                            <option value="3">III Year</option>
+                            <option value="4">IV Year</option>
+                        </select>
+                        <small class="error-msg"></small>
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- ===== Section 3: Account (password) ===== -->
+            <fieldset>
+                <legend>3. Create Password</legend>
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="password">Password <span class="req">*</span></label>
+                        <div class="password-wrap">
+                            <input type="password" id="password" name="password"
+                                   placeholder="Min. 8 characters">
+                            <button type="button" class="toggle-pass"
+                                    data-target="password">Show</button>
+                        </div>
+                        <!-- Strength meter: width and colour are set by JavaScript -->
+                        <div class="strength-bar"><span id="strengthFill"></span></div>
+                        <p class="strength-text" id="strengthText">Strength: &ndash;</p>
+                        <small class="error-msg"></small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirmPassword">
+                            Confirm Password <span class="req">*</span></label>
+                        <div class="password-wrap">
+                            <input type="password" id="confirmPassword" name="confirmPassword"
+                                   placeholder="Re-enter password">
+                            <button type="button" class="toggle-pass"
+                                    data-target="confirmPassword">Show</button>
+                        </div>
+                        <small class="error-msg"></small>
+                    </div>
+
+                    <!-- Live checklist: each rule turns green when satisfied -->
+                    <ul class="pass-rules full-width" id="passRules">
+                        <li data-rule="length">At least 8 characters</li>
+                        <li data-rule="upper">One uppercase letter (A-Z)</li>
+                        <li data-rule="lower">One lowercase letter (a-z)</li>
+                        <li data-rule="digit">One number (0-9)</li>
+                        <li data-rule="special">One special character (!@#$...)</li>
+                    </ul>
+                </div>
+            </fieldset>
+
+            <!-- ===== Section 4: Document upload ===== -->
+            <fieldset>
+                <legend>4. Upload Documents</legend>
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="photo">Profile Photo <span class="req">*</span></label>
+                        <input type="file" id="photo" name="photo"
+                               accept=".jpg,.jpeg,.png">
+                        <p class="hint">JPG or PNG only, maximum 2 MB</p>
+                        <img id="photoPreview" class="photo-preview" alt="Photo preview" hidden>
+                        <small class="error-msg"></small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="idProof">
+                            ID Proof (Aadhaar / School ID) <span class="req">*</span></label>
+                        <input type="file" id="idProof" name="idProof"
+                               accept=".pdf,.jpg,.jpeg,.png">
+                        <p class="hint">PDF, JPG or PNG, maximum 5 MB</p>
+                        <small class="error-msg"></small>
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- ===== Declaration and buttons ===== -->
+            <div class="form-group declaration">
+                <label class="check-label">
+                    <input type="checkbox" id="declaration" name="declaration">
+                    I declare that the information provided above is true and correct.
+                </label>
+                <small class="error-msg"></small>
+            </div>
+
+            <div class="btn-row">
+                <button type="submit" class="btn btn-primary">Register</button>
+                <button type="reset" class="btn btn-secondary">Clear Form</button>
+            </div>
+        </form>
+
+        <!-- Success card (hidden until the form is valid) -->
+        <section id="successCard" class="success-card" hidden>
+            <h2>Registration Successful!</h2>
+            <p>Thank you, <strong id="successName"></strong>.</p>
+            <p>Roll No: <strong id="successRoll"></strong> &middot;
+               Course: <strong id="successCourse"></strong></p>
+            <button type="button" class="btn btn-primary" id="newEntryBtn">
+                Register Another Student
+            </button>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        &copy; 2026 KPR Institute of Engineering and Technology &middot;
+        Developed by S B GOKUL (24CS067)
+    </footer>
+
+    <script src="js/validation.js"></script>
+</body>
+</html>
